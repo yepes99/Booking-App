@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('availabilities', function (Blueprint $table) {
+            $table->id(); // ID único de la disponibilidad
+            $table->foreignId('hotel_id')->unsigned()->constrained('hotels')->onDelete('cascade'); // Relación con el hotel
+            $table->foreignId('room_id')->nullable()->unsigned()->constrained('rooms')->onDelete('set null'); // Relación con la habitación
+            $table->date('date'); // Fecha de la disponibilidad
+            $table->enum('status', ['available', 'booked', 'maintenance', 'closed'])->default('available'); // Estado de la disponibilidad
+            $table->integer('available_rooms')->default(0); // Número de habitaciones disponibles
+            $table->decimal('price_per_night', 8, 2)->nullable(); // Precio por noche
+            $table->integer('minimum_stay')->default(1); // Estancia mínima
+            $table->integer('maximum_stay')->default(30); // Estancia máxima
+            $table->boolean('special_offer')->default(false); // Oferta especial
+            $table->time('check_in_time')->nullable(); // Hora de check-in
+            $table->time('check_out_time')->nullable(); // Hora de check-out
+            $table->integer('maximum_guests')->default(1); // Número máximo de huéspedes
+            $table->boolean('is_promoted')->default(false); // Si es una promoción
+            $table->boolean('special_requests_allowed')->default(true); // Si se permiten solicitudes especiales
+            $table->text('notes')->nullable(); // Notas adicionales
+            $table->enum('season', ['low', 'mid', 'high'])->default('low'); // Temporada
+            $table->boolean('sold_out')->default(false); // Indica si está agotado
+            $table->timestamp('maintenance_start')->nullable(); // Inicio de mantenimiento
+            $table->timestamp('maintenance_end')->nullable(); // Fin de mantenimiento
+            $table->timestamps(); // Fechas de creación y actualización
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('availabilities');
+    }
+};
