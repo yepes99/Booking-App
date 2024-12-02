@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/es.php';
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/es/home'); 
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
