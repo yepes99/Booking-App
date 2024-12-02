@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id(); // ID de la reseña
+            $table->foreignId('hotel_id')->constrained()->onDelete('cascade'); // Relación con la tabla hotels
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relación con la tabla users
+            $table->integer('rating')->default(0); // Calificación del 1 al 5
+            $table->text('review_text')->nullable(); // Texto de la reseña
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Estado de la reseña
+            $table->boolean('is_edited')->default(false); // Si la reseña fue editada
+            $table->integer('helpful_count')->default(0); // Número de personas que marcaron la reseña como útil
+            $table->timestamp('review_date')->nullable(); // Fecha de la reseña
+            $table->timestamp('last_edited_at')->nullable(); // Fecha de la última edición
+            $table->text('image_urls')->nullable(); // URLs de imágenes adjuntas a la reseña
+            $table->text('response')->nullable(); // Respuesta del hotel o administrador a la reseña
+            $table->timestamp('deleted_at')->nullable(); // Fecha de eliminación (para soft delete)
+            $table->boolean('is_verified')->default(false); // Si la reseña fue verificada (para clientes reales)
+            $table->timestamps(); // Fechas de creación y actualización
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('reviews');
+    }
+};
