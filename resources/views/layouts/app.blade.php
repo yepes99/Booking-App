@@ -9,14 +9,7 @@
 </head>
 <body>
     <header>
-        <nav>
-            <!-- Aquí iría tu menú de navegación -->
-            <ul>
-                <li><a href="{{ url('/es/home') }}">Inicio</a></li>
-                <li><a href="{{ url('/es/servicios') }}">Servicios</a></li>
-                <li><a href="{{ url('/es/contacto') }}">Contacto</a></li>
-            </ul>
-        </nav>
+    @include('components.navbar')
     </header>
 
     <main>
