@@ -1,0 +1,196 @@
+/* Fonts */
+@import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
+:root {
+    --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --heading-font: "Nunito", sans-serif;
+    --nav-font: "Inter", sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root {
+    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+    --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
+    --heading-color: #2d465e; /* Color for headings, subheadings and title throughout the website */
+    --accent-color: #0d83fd; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+    --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+.light-background {
+    --background-color: #f3f9ff;
+    --surface-color: #ffffff;
+}
+
+.dark-background {
+    --background-color: #0d83fd;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #409dfd;
+    --contrast-color: #ffffff;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-family: var(--default-font);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: color-mix(in srgb, var(--accent-color), transparent 25%);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+    position: relative;
+    padding-top: 2rem;
+    margin-left: 5%; 
+    margin-right: 5%; 
+    background-image: url('https://images.pexels.com/photos/162539/architecture-building-amsterdam-blue-sky-162539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    border-radius: 20px; 
+}
+
+.hero .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content {
+    background-color: #ffffffcf; /* Fondo blanco */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno para que el contenido no esté pegado a los bordes */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.hero .hero-content h1 .accent-text {
+    color: var(--accent-color);
+}
+
+@media (max-width: 992px) {
+    .hero .hero-content {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .hero .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero .hero-content .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero .hero-content h1 {
+        font-size: 2rem;
+    }
+}
+
+.hero .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--accent-color), black 20%);
+    border-color: color-mix(in srgb, var(--accent-color), black 20%);
+}
+
+
+.hero .hero-image {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.hero .hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*SEARCH */
+
+.hero .stats-row {
+    position: relative;
+    z-index: 1;
+    background-color: var(--surface-color);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding-bottom: 1rem; 
+}
+
+.search-property-1 .form-group {
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    
+    margin-right: 10px; 
+}
+
+.search-property-1 .form-group label {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0d83fd;
+    text-transform: uppercase;
+    margin-bottom: 5px; /* Reducir el margen inferior de la etiqueta */
+}
+
+/* Estilos para el botón de tipo input submit */
+.submit_button {
+    text-decoration: none;
+    line-height: 1;
+    border-radius: 10px;     
+    overflow: hidden;
+    position: relative;
+    color: #070707;                  
+    border-color: #0d83fd;
+    cursor: pointer;
+    padding: 10px 20px;          
+    font-size: 16px;              /* Tamaño de fuente */
+    display: inline-flex;         /* Para que el contenido del botón esté alineado */
+    align-items: center;          /* Centrado vertical */
+    justify-content: center;      /* Centrado horizontal */
+    transition: background-color 0.3s ease; /* Transición al pasar el ratón */
+}
+
+/* Cambio de color al pasar el mouse */
+.submit_button:hover {
+    background-color: #0d83fd;  /* Cambio a un tono más oscuro */
+    color: #f3f9ff;
+}
+
+/* Estilos para el texto dentro del botón */
+.submit_button::placeholder {
+    color: white;                /* Color blanco para el texto del placeholder */
+    opacity: 0.8;                /* Opacidad más baja para el placeholder */
+}
+
+
+
+
